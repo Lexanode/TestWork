@@ -58,7 +58,8 @@ export class ReportService {
         orders,
       );
       //#todo env
-      const excelFileUrl = `http://localhost:3000/reports/${fileName}`;
+      const host = this.configService.get<string>('host');
+      const excelFileUrl = `http://${host}/reports/${fileName}`;
 
       await this.update(taskId, {
         excelFileUrl: excelFileUrl,

@@ -1,9 +1,7 @@
 export default () => ({
-//     PORT=3000
-// REPORTS_PATH=../../static/reports
+    host:process.env.HOST || `localhost${process.env.PORT}`,
     port: parseInt(process.env.PORT) || 3000,
-    pathReports: 
-   process.env.REPORTS_PATH,
+    pathReports: process.env.REPORTS_PATH,
     
   });
   
