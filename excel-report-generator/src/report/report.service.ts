@@ -3,6 +3,7 @@ import {
   InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { CreateReportDto } from './dto/create-report.dto';
 import { UpdateReportDto } from './dto/update-report.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -11,30 +12,13 @@ import { StatusReport } from '@prisma/client';
 import axios, { AxiosError } from 'axios';
 import * as path from 'path';
 
-import * as Excel from 'exceljs';
-import * as fs from 'fs/promises';
-import { randomUUID } from 'node:crypto';
-import { ConfigService } from '@nestjs/config';
-
-type DataTaxi = {
-  time: number;
-  price: number;
-  destanation: string;
-};
-
 @Injectable()
-
-
-
-
-
-
 export class ReportService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly excelService: ExcelService,
     private readonly configService: ConfigService
-  ) {}
+  ) { }
   private async generateExcelReport(
     taskId: number,
     createReportDto: CreateReportDto,
@@ -45,7 +29,7 @@ export class ReportService {
       });
       const { orders } = response.data.data;
 
- 
+
       const portReports = this.configService.get<string>('pathReports');
       const exportDir = path.resolve(__dirname, portReports);
       const fileName = `report-${createReportDto.titleService}-${taskId}.xlsx`;
@@ -128,7 +112,7 @@ export class ReportService {
       },
     });
   }
-  findAll() { 
+  findAll() {
     return `This action returns all report`;
   }
   remove(id: number) {
