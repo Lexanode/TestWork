@@ -1,8 +1,8 @@
-import modelAccountInstance from "../models/model-orders"; // Import your model
+import modelOrders from "../models/model-orders";
 
 class DataService {
   async getPaginatedOrders(page: number, rowsPerPage: number) {
-    return modelAccountInstance.getPaginated(page, rowsPerPage);
+    return modelOrders.getPaginated(page, rowsPerPage);
   }
 }
 
