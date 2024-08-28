@@ -57,7 +57,7 @@ export class ReportService {
         exportDir,
         orders,
       );
-      //#todo env
+
       const host = this.configService.get<string>('host');
       const excelFileUrl = `http://${host}/reports/${fileName}`;
 
