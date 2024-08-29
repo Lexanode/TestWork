@@ -30,7 +30,7 @@ export class CreateReportDto {
 
   @ApiProperty({
     description: 'URL where the report data can be accessed',
-    example: 'http://localhost:3001/api/v1/data?page=1&count=10',
+    example: 'http://client:3001/api/v1/data?page=1&count=10',
   })
   @IsString()
   @IsNotEmpty()

@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  postgresdb_client:
+    image: postgres
+    restart: unless-stopped
+    env_file: "client-servcie.env"
+    environment:
+      - POSTGRES_USER=$POSTGRESDB_USER_CLIENT
+      - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD_CLIENT
+      - POSTGRES_DB=$POSTGRESDB_DATABASE_CLIENT
+    ports:
+      - $POSTGRESDB_LOCAL_PORT_CLIENT:$POSTGRESDB_DOCKER_PORT_CLIENT
+    volumes:
+      - db_client:/var/lib/postgres
+  client:
+    depends_on:
+      - postgresdb_client
+    build: ./client-service
+    restart: unless-stopped
+    env_file: "client-servcie.env"
+    ports:
+      - $NODE_LOCAL_PORT_CLIENT:$NODE_DOCKER_PORT_CLIENT
+    stdin_open: true
+    tty: true
+  postgresdb_excel_service:
+    image: postgres
+    restart: unless-stopped
+    env_file: "client-servcie.env"
+    environment:
+      - POSTGRES_USER=$POSTGRESDB_USER_EXCEL
+      - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD_EXCEL
+      - POSTGRES_DB=$POSTGRESDB_DATABASE_EXCEL
+      - PGPORT=$POSTGRESDB_DOCKER_PORT_EXCEL
+    ports:
+      - $POSTGRESDB_LOCAL_PORT_EXCEL:$POSTGRESDB_DOCKER_PORT_EXCEL
+    volumes:
+      - db_excel:/var/lib/postgres
+  excel_service:
+    depends_on:
+      - postgresdb_excel_service
+    build: ./excel-report-generator
+    restart: unless-stopped
+    env_file: "excel-service.env"
+    ports:
+      - $NODE_LOCAL_PORT_EXCEL:$NODE_DOCKER_PORT_EXCEL
+    stdin_open: true
+    tty: true
+    volumes:
+      - reports:/app/static/reports
+volumes: 
+  db_client:
+  db_excel:
+  reports:
+
