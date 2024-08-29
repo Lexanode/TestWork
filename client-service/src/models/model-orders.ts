@@ -2,14 +2,19 @@ import { PrismaClient, type OrdersTaxi, StatusRide } from "@prisma/client";
 import { ImodelOrders, OrderData } from "../types/interface-model-orders";
 const prisma = new PrismaClient();
 
-
-
 class ModelOrdersTaxi implements ImodelOrders {
   async create(data: OrderData): Promise<OrdersTaxi> {
     return prisma.ordersTaxi.create({
       data: {
         ...data,
       },
+    });
+  }
+  async createMany(data: OrderData[]): Promise<OrdersTaxi[]> {
+    return await prisma.ordersTaxi.createManyAndReturn({
+      data: [
+        ...data,
+      ]
     });
   }
   async update(id: string, data: OrderData): Promise<OrdersTaxi> {
@@ -32,7 +37,6 @@ class ModelOrdersTaxi implements ImodelOrders {
       },
     });
 
-    console.log("Updated profile:", updatedAccount);
     return updatedAccount;
   }
   async getOne(id: string) {

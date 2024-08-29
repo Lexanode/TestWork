@@ -1,0 +1,130 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "My API TaxiMaksim",
+    "description": "Taxi",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3001",
+  "basePath": "/api/v1/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/data": {
+      "get": {
+        "description": "Return data from db",
+        "parameters": [  
+      
+          {  
+             "name":"page",
+             "in":"query",
+             "description":"Page number",
+             "required":false,
+             "type":"number"
+          },
+          {  
+             "name":"count",
+             "in":"query",
+             "description":"Count item",
+             "required":false,
+             "type":"number"
+          }
+       ],
+        "responses": {
+          "200": {
+            "description": "Array of all todos",
+       
+            "schema" : {
+              "type": "object",
+              "properties":{
+                "status": {
+                  "$ref": "#/definitions/status"
+                },
+                "data": {
+                  "$ref": "#/definitions/data"
+                }
+              }
+         
+          }
+        }
+        }
+      }
+    },
+    "/mock": {
+      "get": {
+        "description": "Need only to load mock data in db",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "status": {
+      "type": "string",
+      "example": "ok"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "orders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "444e0a55-c0cc-49bc-989e-06ec823b7199"
+              },
+              "status": {
+                "type": "string",
+                "example": "CANCELED"
+              },
+              "price": {
+                "type": "integer",
+                "format": "int32",
+                "example": "451"
+              },
+              "pickupLocation": {
+                "type": "string",
+                "example": "Moscow"
+              },
+              "dropoffLocation": {
+                "type": "string",
+                "example": "Saint Petersburg"
+              },
+              "create_date": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2024-08-29T15:04:05.851Z"
+              }
+            }
+          },
+          "example": [
+            {
+              "id": "444e0a55-c0cc-49bc-989e-06ec823b7199",
+              "status": "CANCELED",
+              "price": 451,
+              "pickupLocation": "Moscow",
+              "dropoffLocation": "Saint Petersburg",
+              "create_date": "2024-08-29T15:04:05.851Z"
+            }
+          ]
+        },
+        "currentPage": {
+          "type": "integer",
+          "format": "int32",
+          "example": "1"
+        },
+        "rowsPerPage": {
+          "type": "integer",
+          "format": "int32",
+          "example": "10"
+        }
+      }
+    }
+  }
+}

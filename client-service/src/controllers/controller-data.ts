@@ -2,6 +2,7 @@ import type { Request, Response } from "express";
 import dataService from "../services/service-data";
 import { paginationSchema } from "../validators/pagination.-schema";
 import { ZodError } from "zod";
+import { mockOrders } from "../temp/mock-data";
 
 class ControllerData {
   async getData(req: Request, res: Response) {
@@ -30,6 +31,24 @@ class ControllerData {
           .json({ status: "error", message: "Internal Server Error" });
       }
     }
+  }
+  async loadMockData(req: Request, res: Response) {
+    try {
+      await dataService.loadMockData();
+      res.status(200).json({
+        status: "ok",
+      }
+
+      )
+    } catch (error) {
+      console.log(error);
+
+      res
+        .status(500)
+        .json({ status: "error", message: "Internal Server Error" });
+    }
+
+
   }
 }
 
