@@ -1,7 +1,7 @@
 import type { OrdersTaxi } from "@prisma/client";
 
 
-type OrderData = Omit<OrdersTaxi, "id" | "create_date">;
+export type OrderData = Omit<OrdersTaxi, "id" | "create_date">;
 
 export interface ImodelOrders {
     create(data: OrderData): Promise<OrdersTaxi>;

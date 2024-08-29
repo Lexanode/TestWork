@@ -1,8 +1,8 @@
 import { PrismaClient, type OrdersTaxi, StatusRide } from "@prisma/client";
-import { ImodelOrders } from "../types/interface-model-orders";
+import { ImodelOrders, OrderData } from "../types/interface-model-orders";
 const prisma = new PrismaClient();
 
-type OrderData = Omit<OrdersTaxi, "id" | "create_date">;
+
 
 class ModelOrdersTaxi implements ImodelOrders {
   async create(data: OrderData): Promise<OrdersTaxi> {
