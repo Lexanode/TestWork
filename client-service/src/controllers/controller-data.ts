@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import dataService from "../services/service-data";
-import { paginationSchema } from "../validators/pagination.-schema";
+import { paginationSchema } from "../validators/pagination-schema";
 import { ZodError } from "zod";
 import { mockOrders } from "../temp/mock-data";
 
