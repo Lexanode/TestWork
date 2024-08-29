@@ -13,9 +13,8 @@
   "paths": {
     "/data": {
       "get": {
-        "description": "Return data from db",
+        "description": "Return orders taxi from db",
         "parameters": [  
-      
           {  
              "name":"page",
              "in":"query",
@@ -33,8 +32,7 @@
        ],
         "responses": {
           "200": {
-            "description": "Array of all todos",
-       
+            "description": "Array of all orders",
             "schema" : {
               "type": "object",
               "properties":{
