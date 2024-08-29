@@ -1,8 +1,13 @@
-import modelOrders from "../models/model-orders";
+import { ImodelOrders } from "../types/interface-model-orders";
+import modelOrderPrisma from "../models/model-orders";
 
 class DataService {
+  private readonly db: ImodelOrders
+  constructor() {
+    this.db = modelOrderPrisma
+  }
   async getPaginatedOrders(page: number, rowsPerPage: number) {
-    return modelOrders.getPaginated(page, rowsPerPage);
+    return this.db.getPaginated(page, rowsPerPage);
   }
 }
 
