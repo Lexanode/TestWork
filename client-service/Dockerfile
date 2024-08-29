@@ -9,6 +9,5 @@ RUN npm i
 COPY . ./
 
 RUN npm run build
-# RUN npx prisma migrate dev
 RUN npx prisma generate
 CMD ["npm", "start"]
