@@ -5,7 +5,7 @@ import app from "../src/index";
 describe("Test service api", () => {
 
     test("Load mock data in db", async () => {
-        const res = await supertest(app).get("/api/v1/mock");
+        const res = await supertest(app).post("/api/v1/mock");
         expect(res.body).toMatchObject({ "status": "ok" });
     });
 

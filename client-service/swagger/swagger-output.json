@@ -50,7 +50,7 @@
       }
     },
     "/mock": {
-      "get": {
+      "post": {
         "description": "Need only to load mock data in db",
         "responses": {
           "default": {
