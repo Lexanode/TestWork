@@ -12,6 +12,10 @@ app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 app.use(express.json());
 app.use("/api/v1/", router);
 
-app.listen(port, () => {
-  console.log(`Server om port ${port}`);
-});
+if (!(process.env.NODE_ENV === "TEST")) {
+  app.listen(port, () => {
+    console.log(`Server on port ${port}`);
+  });
+}
+
+export default app;
