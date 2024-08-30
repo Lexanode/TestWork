@@ -25,7 +25,7 @@
           {  
              "name":"count",
              "in":"query",
-             "description":"Count item",
+             "description":"Count items",
              "required":false,
              "type":"number"
           }
