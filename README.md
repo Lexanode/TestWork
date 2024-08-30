@@ -1,4 +1,12 @@
-docker compose up
+Test work
+
+## Install
+
+Using DOCKER:
+```
+$ docker compose up
+
+```
 
 Nest js
 excel generate service
