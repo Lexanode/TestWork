@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ReportModule } from './report/report.module';
-import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import config from './config/configuration';
 
@@ -11,7 +10,7 @@ import config from './config/configuration';
     isGlobal: true,
     load: [config]
   }),
-    ReportModule, PrismaModule, ConfigModule,],
+    ReportModule, ConfigModule,],
   controllers: [AppController],
   providers: [AppService],
 })

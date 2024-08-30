@@ -5,10 +5,7 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 
 @Injectable()
-
 export class ExcelService {
-
-      
   private createWorkbook(workSheetName: string) {
     const workbook = new Excel.Workbook();
     const worksheet = workbook.addWorksheet(workSheetName);

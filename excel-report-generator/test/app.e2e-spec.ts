@@ -14,6 +14,12 @@ describe('AppController (e2e)', () => {
     app = moduleFixture.createNestApplication();
     await app.init();
   });
+  
+  afterAll(async () => {
+    await Promise.all([
+      app.close(),
+    ])
+  });
 
   it('/ (GET)', () => {
     return request(app.getHttpServer())
@@ -21,4 +27,35 @@ describe('AppController (e2e)', () => {
       .expect(200)
       .expect('Hello World!');
   });
-});
+  it('/report (POST)', async () => {
+    const payload = {
+      "titleService": "TaxiMaksim",
+      "columnHeaders": [
+        "id",
+        "status",
+        "price",
+        "pickupLocation",
+        "dropoffLocation",
+        "create_date"
+      ],
+      "dataUrl": "http://client:3001/api/v1/data?page=1&count=10"
+    }
+
+    const res = await request(app.getHttpServer())
+      .post('/report')
+      .send(payload)
+      .expect(201)
+
+    expect(res.body).toHaveProperty("id");
+    return expect(res.body).toHaveProperty("message");
+
+  });
+  it('/report/:id (GET)', async () => {
+    //need be sure we create any report before test
+    const res = await request(app.getHttpServer())
+      .get('/report/1')
+      .expect(200)
+    expect(res.body).toHaveProperty("id");
+    return expect(res.body).toHaveProperty("status");
+  });
+})
