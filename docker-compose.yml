@@ -4,7 +4,6 @@ services:
   postgresdb_client:
     image: postgres
     restart: unless-stopped
-    env_file: "client-servcie.env"
     environment:
       - POSTGRES_USER=$POSTGRESDB_USER_CLIENT
       - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD_CLIENT
@@ -26,7 +25,6 @@ services:
   postgresdb_excel_service:
     image: postgres
     restart: unless-stopped
-    env_file: "client-servcie.env"
     environment:
       - POSTGRES_USER=$POSTGRESDB_USER_EXCEL
       - POSTGRES_PASSWORD=$POSTGRESDB_ROOT_PASSWORD_EXCEL

@@ -1,10 +1,10 @@
 {
   "name": "service-express",
   "version": "1.0.0",
-  "main": "node dist/index.js",
+  "main": "node dist/src/index.js",
   "scripts": {
     "build": "npx tsc",
-    "start": "npx prisma migrate deploy && node dist/index.js",
+    "start": "npx prisma migrate deploy && node dist/src/index.js",
     "test":"set NODE_ENV=TEST&& npx jest   --forceExit --detectOpenHandles "
   },
   "keywords": [],

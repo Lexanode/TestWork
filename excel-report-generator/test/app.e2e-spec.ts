@@ -14,7 +14,7 @@ describe('AppController (e2e)', () => {
     app = moduleFixture.createNestApplication();
     await app.init();
   });
-  
+
   afterAll(async () => {
     await Promise.all([
       app.close(),
@@ -57,5 +57,13 @@ describe('AppController (e2e)', () => {
       .expect(200)
     expect(res.body).toHaveProperty("id");
     return expect(res.body).toHaveProperty("status");
+  });
+
+  it('/report/:id (GET) expect 404', async () => {
+    //need be sure we create any report before test
+    return await request(app.getHttpServer())
+      .get('/report/9999999')
+      .expect(404)
+
   });
 })
