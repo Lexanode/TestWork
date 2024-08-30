@@ -11,11 +11,13 @@ $ docker compose up
 excel generate service
 http://localhost:3000/swagger
 
+GET http://localhost:3001/report/:id
+get data from db about report
+
 POST http://localhost:3001/report/
 create task to generate excels
 
-GET http://localhost:3001/report/:id
-get data from db about report
+
 
 ## Express TS
 client service
