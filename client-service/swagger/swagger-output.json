@@ -32,7 +32,7 @@
        ],
         "responses": {
           "200": {
-            "description": "Array of all orders",
+            "description": "Array of all orders taxi",
             "schema" : {
               "type": "object",
               "properties":{
