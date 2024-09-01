@@ -3,9 +3,7 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
-  Delete,
   ParseIntPipe,
 } from '@nestjs/common';
 
@@ -20,7 +18,7 @@ import { NotFoundError } from './dto/not-found-error';
 
 @Controller('report')
 export class ReportController {
-  constructor(private readonly reportService: ReportService) {}
+  constructor(private readonly reportService: ReportService) { }
 
   @ApiResponse({
     status: 201,
@@ -43,12 +41,6 @@ export class ReportController {
   ): Promise<CreateReportGoodAnswerDto> {
     return this.reportService.create(createReportDto);
   }
-
-  // @Get()
-  // findAll() {
-  //   return this.reportService.findAll();
-  // }
-
   @ApiResponse({
     status: 201,
     description: 'The report has been successfully created.',
@@ -73,15 +65,4 @@ export class ReportController {
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.reportService.findOne(id);
   }
-
-  // @Patch(':id')
-  // update(@Param('id') id: string, @Body() updateReportDto: UpdateReportDto) {
-  //   //todo use pipes to VASLIUDE id
-  //   return this.reportService.update(+id, updateReportDto);
-  // }
-
-  // @Delete(':id')
-  // remove(@Param('id') id: string) {
-  //   return this.reportService.remove(+id);
-  // }
 }
