@@ -14,9 +14,24 @@ http://localhost:3000/swagger
 GET http://localhost:3001/report/:id
 get data from db about report
 
-POST http://localhost:3001/report/
-create task to generate excels
+POST http://localhost:3001/report/ <br>
+example Payload
+```json
+{
+    "titleService": "TaxiMaksim",
+    "columnHeaders": [
+      "id",
+      "status",
+      "price",
+      "pickupLocation",
+      "dropoffLocation",
+      "create_date",
+    ],
+    "dataUrl": "http://client:3001/api/v1/data?page=1&count=10"
+}
 
+```
+create task to generate excels
 
 
 ## Express TS
