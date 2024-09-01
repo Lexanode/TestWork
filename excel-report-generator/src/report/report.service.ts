@@ -18,7 +18,7 @@ export class ReportService {
     private readonly prisma: PrismaService,
     private readonly excelService: ExcelService,
     private readonly configService: ConfigService
-  ) { }
+  ) {}
   private async generateExcelReport(
     taskId: number,
     createReportDto: CreateReportDto,
@@ -87,7 +87,6 @@ export class ReportService {
       statusCode: 201,
     };
   }
-
   async findOne(id: number) {
     const report = await this.prisma.report.findUnique({
       where: {
@@ -112,10 +111,5 @@ export class ReportService {
       },
     });
   }
-  findAll() {
-    return `This action returns all report`;
-  }
-  remove(id: number) {
-    return `This action removes a #${id} report`;
-  }
+
 }
