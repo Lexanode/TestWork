@@ -1,10 +1,13 @@
-Test work
+Test work🔨
 
 ## Install
-
+Download project
+```
+git clone https://github.com/Lexanode/TestWork.git
+```
 Using DOCKER:
 ```
-$ docker compose up
+docker compose up
 ```
 
 ## Nest js
